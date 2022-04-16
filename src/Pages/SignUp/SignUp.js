@@ -1,11 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
+import toast, { Toaster } from "react-hot-toast";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import logo from "../../images/logo.png";
 
 const SignUp = () => {
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  const [customError, setCustomError] = useState("");
+  const handelSignUp = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const agree = e.target.checkBox.checked;
+    const confirmPassword = e.target.confirmPassword.value;
+
+    if (agree) {
+      if (password === confirmPassword) {
+        createUserWithEmailAndPassword(email, password);
+        setCustomError("");
+        toast.success("user Successfully created!");
+      } else {
+        setCustomError("Two password are not same !");
+        toast.error("Two password are not same !");
+      }
+    } else {
+      setCustomError("please accept trams and conditions");
+      toast.error("accpet trams conditions");
+    }
+  };
+
   return (
     <div>
-      <div class="block p-6 mx-auto my-8 rounded-lg shadow-lg bg-white max-w-sm">
+      <div className="block p-6 mx-auto my-8 rounded-lg shadow-lg bg-white max-w-sm">
         <img
           className="mx-auto my-1"
           style={{ height: "50px" }}
@@ -15,17 +43,17 @@ const SignUp = () => {
         <h2 className="text-3xl mb-2 font-sans font-semibold text-rose-600">
           Sign Up
         </h2>
-        <form>
-          <div class="form-group mb-6">
+        <form onSubmit={handelSignUp}>
+          <div className="form-group mb-6">
             <label
-              for="exampleInputEmail2"
-              class="form-label inline-block mb-2 text-gray-700"
+              htmlFor="exampleInputEmail2"
+              className="form-label inline-block mb-2 text-gray-700"
             >
               Email address
             </label>
             <input
               type="email"
-              class="form-control
+              className="form-control
         block
         w-full
         px-3
@@ -43,19 +71,20 @@ const SignUp = () => {
               id="exampleInputEmail2"
               name="email"
               aria-describedby="emailHelp"
+              required
               placeholder="Enter email"
             />
           </div>
-          <div class="form-group mb-6">
+          <div className="form-group mb-6">
             <label
-              for="exampleInputPassword2"
-              class="form-label inline-block mb-2 text-gray-700"
+              htmlFor="exampleInputPassword2"
+              className="form-label inline-block mb-2 text-gray-700"
             >
               Password
             </label>
             <input
               type="password"
-              class="form-control block
+              className="form-control block
         w-full
         px-3
         py-1.5
@@ -71,19 +100,20 @@ const SignUp = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="exampleInputPassword2"
               name="password"
+              required
               placeholder="Password"
             />
           </div>
-          <div class="form-group mb-6">
+          <div className="form-group mb-6">
             <label
-              for="exampleInputPassword2"
-              class="form-label inline-block mb-2 text-gray-700"
+              htmlFor="exampleInputPassword2"
+              className="form-label inline-block mb-2 text-gray-700"
             >
-              Password
+              Confirm Password
             </label>
             <input
               type="password"
-              class="form-control block
+              className="form-control block
         w-full
         px-3
         py-1.5
@@ -99,27 +129,30 @@ const SignUp = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="exampleInputPassword3"
               name="confirmPassword"
+              required
               placeholder="Confirm Password"
             />
           </div>
-          <div class="flex justify-start items-center mb-6">
-            <div class="form-group form-check">
+          <div className="flex justify-start items-center mb-6">
+            <div className="form-group form-check">
               <input
                 type="checkbox"
-                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 id="exampleCheck2"
+                name="checkBox"
               />
               <label
-                class="form-check-label inline-block text-gray-800"
-                for="exampleCheck2"
+                className="form-check-label inline-block text-gray-800"
+                htmlFor="exampleCheck2"
               >
-                Remember me
+                Accept all trams $ conditions
               </label>
             </div>
           </div>
+          <p className="text-red-600">{error?.message || customError}</p>
           <button
             type="submit"
-            class="
+            className="
       w-full
       px-6
       py-2.5
@@ -140,15 +173,16 @@ const SignUp = () => {
           >
             Sign in
           </button>
-          <p class="text-gray-800 mt-6 text-center">
+          <p className="text-gray-800 mt-6 text-center">
             Not a member?{" "}
             <Link
               to="/login"
-              class="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out"
+              className="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out"
             >
               Login
             </Link>
           </p>
+          <Toaster />
         </form>
       </div>
     </div>

@@ -4,6 +4,7 @@ import AboutMe from "./Pages/AboutMe/AboutMe";
 import CheckOut from "./Pages/CheckOut/CheckOut";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
+import NotFound from "./Pages/NotFound/NotFound";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
 import SignUp from "./Pages/SignUp/SignUp";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/checkOut" element={<CheckOut></CheckOut>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signUp" element={<SignUp></SignUp>}></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
     </div>

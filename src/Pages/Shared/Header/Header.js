@@ -1,9 +1,17 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FiLogIn } from "react-icons/fi";
+import { GoSignOut } from "react-icons/go";
 import logo from "../../../images/logo.png";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
+import { signOut } from "firebase/auth";
 
 const Header = () => {
+  const [user] = useAuthState(auth);
+  const handelSignOut = () => {
+    signOut(auth);
+  };
   return (
     <div>
       <nav
@@ -127,12 +135,21 @@ const Header = () => {
           </div>
 
           <div className="flex items-center relative">
-            <Link
-              className="flex items-center  bg-rose-600 mr-3 rounded-full hover:bg-rose-700 text-white px-4 py-2"
-              to="/login"
-            >
-              <FiLogIn className="mr-2"></FiLogIn> Login
-            </Link>
+            {user ? (
+              <button
+                onClick={handelSignOut}
+                className="flex items-center  bg-rose-600 mr-3 rounded-full hover:bg-rose-700 text-white px-4 py-2"
+              >
+                <GoSignOut className="mr-2"></GoSignOut> Sign Out
+              </button>
+            ) : (
+              <Link
+                className="flex items-center  bg-rose-600 mr-3 rounded-full hover:bg-rose-700 text-white px-4 py-2"
+                to="/login"
+              >
+                <FiLogIn className="mr-2"></FiLogIn> Login
+              </Link>
+            )}
             <div className="dropdown relative">
               <a
                 className="dropdown-toggle flex items-center hidden-arrow"
