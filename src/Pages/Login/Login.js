@@ -1,33 +1,49 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import logo from "../../images/logo.png";
 import {
   useAuthState,
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
-import { async } from "@firebase/util";
 
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
   const handelLogin = async (e) => {
-    e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+
+    e.preventDefault();
     await signInWithEmailAndPassword(email, password);
+    /* clear input feild */
+    e.target.email.value = "";
+    e.target.password.value = "";
 
     if (user) {
       toast.success("Login Successfull");
     }
+    console.log(user);
     if (error) {
-      toast.error("password not matched !");
+      toast.error("invalid password or email !");
     }
-
-    // toast.error("user Successfully created!");
   };
+  /* reset password */
+  const [currentEmail, setCurrentEmail] = useState("");
+  const handelEmailBlur = (e) => {
+    setCurrentEmail(e.target.value);
+  };
+  let navigate = useNavigate();
+  let location = useLocation();
+  const [currentUser] = useAuthState(auth);
+  let from = location.state?.from?.pathname || "/";
+  if (currentUser) {
+    navigate(from, { replace: true });
+  }
   return (
     <div>
       <div className="block p-6 mx-auto my-8 rounded-lg shadow-lg bg-white max-w-sm">
@@ -66,6 +82,7 @@ const Login = () => {
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="exampleInputEmail2"
+              onBlur={handelEmailBlur}
               aria-describedby="emailHelp"
               required
               name="email"
@@ -102,10 +119,17 @@ const Login = () => {
             />
           </div>
           <div className="flex justify-end items-center mb-6">
-            <span className="text-blue-600 cursor-pointer hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out">
+            <span
+              onClick={() => {
+                sendPasswordResetEmail(currentEmail);
+                toast.success("Reset Email send");
+              }}
+              className="text-blue-600 cursor-pointer hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out"
+            >
               Forgot password?
             </span>
           </div>
+          <p className="text-red-600">{error?.message}</p>
           <button
             type="submit"
             className="
@@ -139,6 +163,17 @@ const Login = () => {
             </Link>
           </p>
           <Toaster />
+          <div className="flex items-center w-4/6 mx-auto">
+            <div
+              style={{ height: "1px", width: "100%" }}
+              className="bg-gray-700"
+            ></div>
+            <p className="mx-3">or</p>
+            <div
+              style={{ height: "1px", width: "100%" }}
+              className="bg-gray-700"
+            ></div>
+          </div>
         </form>
       </div>
     </div>

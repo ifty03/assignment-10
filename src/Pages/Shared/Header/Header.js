@@ -135,16 +135,22 @@ const Header = () => {
           </div>
 
           <div className="flex items-center relative">
+            <Link
+              className=" px-4 py-1 hover:border-2 rounded-full hover:border-rose-600"
+              to="/signUp"
+            >
+              Sign Up
+            </Link>
             {user ? (
               <button
                 onClick={handelSignOut}
-                className="flex items-center  bg-rose-600 mr-3 rounded-full hover:bg-rose-700 text-white px-4 py-2"
+                className="flex items-center ml-4  bg-rose-600 mr-3 rounded-full hover:bg-rose-700 text-white px-4 py-2"
               >
                 <GoSignOut className="mr-2"></GoSignOut> Sign Out
               </button>
             ) : (
               <Link
-                className="flex items-center  bg-rose-600 mr-3 rounded-full hover:bg-rose-700 text-white px-4 py-2"
+                className="flex items-center ml-4  bg-rose-600 mr-3 rounded-full hover:bg-rose-700 text-white px-4 py-2"
                 to="/login"
               >
                 <FiLogIn className="mr-2"></FiLogIn> Login

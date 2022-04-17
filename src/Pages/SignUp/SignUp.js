@@ -16,11 +16,17 @@ const SignUp = () => {
     const agree = e.target.checkBox.checked;
     const confirmPassword = e.target.confirmPassword.value;
 
+    /* create a user with email and password */
     if (agree) {
       if (password === confirmPassword) {
         createUserWithEmailAndPassword(email, password);
         setCustomError("");
         toast.success("user Successfully created!");
+        /* clear input feild */
+        e.target.email.value = "";
+        e.target.password.value = "";
+        e.target.checkBox.checked = false;
+        e.target.confirmPassword.value = "";
       } else {
         setCustomError("Two password are not same !");
         toast.error("Two password are not same !");
