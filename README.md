@@ -1,6 +1,6 @@
 # Innovative fitness
 
-This is my live project [Live link](https://independent-gym-trainer.web.app/).
+This is my live project link [https://independent-gym-trainer.web.app/](https://independent-gym-trainer.web.app/).
 
 ## Everything in this project
 
