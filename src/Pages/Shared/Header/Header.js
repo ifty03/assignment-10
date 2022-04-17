@@ -134,7 +134,7 @@ const Header = () => {
             </ul>
           </div>
 
-          <div className="flex items-center relative">
+          <div className="flex max-w-fit mx-auto items-center relative">
             <Link
               className=" px-4 py-1 hover:border-2 rounded-full hover:border-rose-600"
               to="/signUp"

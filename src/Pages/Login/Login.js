@@ -122,7 +122,11 @@ const Login = () => {
             <span
               onClick={() => {
                 sendPasswordResetEmail(currentEmail);
-                toast.success("Reset Email send");
+                if (currentEmail) {
+                  toast.success("Reset Email send");
+                } else {
+                  toast.error("Please Input an Email");
+                }
               }}
               className="text-blue-600 cursor-pointer hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out"
             >

@@ -9,9 +9,16 @@ const Services = () => {
       .then((data) => setServices(data));
   }, []);
   return (
-    <div>
-      <h2>this is my services</h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 md:w-5/6 gap-5 mx-auto">
+    <div className="md:w-5/6 mx-auto">
+      <h2 className="flex justify-start text-5xl font-bold mt-6">
+        Our Service Packages
+      </h2>
+      <p className="md:w-3/6 text-left mt-2 mb-8">
+        Exercise involves engaging in physical activity and increasing the heart
+        rate beyond resting levels. It is an important part of preserving
+        physical and mental health.
+      </p>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1  gap-5">
         {services.map((service) => (
           <Service key={service._id} service={service}></Service>
         ))}

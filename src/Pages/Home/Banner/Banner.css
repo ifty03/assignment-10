@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 .banner-container{
     background-image: url(../../../images/banner.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
+    /* background-size: 100%;
+    background-repeat: no-repeat; */
     
     
 }

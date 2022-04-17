@@ -4,16 +4,13 @@ import "./Banner.css";
 
 const Banner = () => {
   return (
-    <div
-      style={{ height: "550px" }}
-      className="banner-container grid grid-cols-2"
-    >
-      <div className="md:pt-28 pt-10">
+    <div className="banner-container bg-cover grid grid-cols-3 md:grid-cols-2 md:pt-10 pb-10 md:pb-40">
+      <div className="md:pt-28 pt-10 col-span-2 md:col-span-1">
         <h1 className="md:text-6xl text-rose-600 lg:text-8xl text-4xl  font-sans font-bold">
           TRY A WEEK{" "}
         </h1>
         <h2 className="md:text-6xl text-white mb-5 md:mb-10 lg:text-8xl text-4xl text-white font-sans font-bold title">
-          ON ME !
+          WITH ME !
         </h2>
         <Link
           to="/about"
