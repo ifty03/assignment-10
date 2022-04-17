@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AboutMe from "./Pages/AboutMe/AboutMe";
+import Blog from "./Pages/Blog/Blog";
 import CheckOut from "./Pages/CheckOut/CheckOut";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
@@ -19,13 +20,14 @@ function App() {
       .then((data) => setServices(data));
   }, []);
   return (
-    <div className="App">
+    <div className="App bg-slate-100">
       <Header></Header>
       <ServiceContext.Provider value={services}>
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="/home" element={<Home></Home>}></Route>
           <Route path="/about" element={<AboutMe></AboutMe>}></Route>
+          <Route path="/blogs" element={<Blog></Blog>}></Route>
           <Route
             path="/checkOut/:checkOutId"
             element={

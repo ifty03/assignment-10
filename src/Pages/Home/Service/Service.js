@@ -5,11 +5,11 @@ const Service = ({ service }) => {
   const { picture, name, balance, _id, about } = service;
   return (
     <div className="mx-auto">
-      <div className="max-w-sm rounded-md shadow-md dark:bg-coolGray-900 dark:text-coolGray-100">
+      <div className="relative overflow-hidden max-w-sm rounded-md shadow-md dark:bg-coolGray-900 dark:text-coolGray-100">
         <img
           src={picture}
           alt=""
-          className="object-cover object-center w-full rounded-t-md h-72 dark:bg-coolGray-500"
+          className="hover:scale-110 transition duration-300 ease-in-out object-cover object-center w-full rounded-t-md h-72 dark:bg-coolGray-500"
         />
         <div className="flex flex-col justify-between p-6 space-y-8">
           <div className="space-y-2">
