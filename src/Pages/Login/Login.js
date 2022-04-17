@@ -8,6 +8,7 @@ import {
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import Social from "../../Social/Social";
 
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
@@ -179,6 +180,7 @@ const Login = () => {
             ></div>
           </div>
         </form>
+        <Social></Social>
       </div>
     </div>
   );

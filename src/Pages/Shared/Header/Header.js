@@ -6,12 +6,15 @@ import logo from "../../../images/logo.png";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import { signOut } from "firebase/auth";
+import userPhoto from "../../../images/user.jpg";
 
 const Header = () => {
   const [user] = useAuthState(auth);
+
   const handelSignOut = () => {
     signOut(auth);
   };
+
   return (
     <div>
       <nav
@@ -166,9 +169,9 @@ const Header = () => {
                 aria-expanded="false"
               >
                 <img
-                  src="https://mdbootstrap.com/img/new/avatars/2.jpg"
+                  src={userPhoto}
                   className="rounded-full"
-                  style={{ height: "25px", width: "25px" }}
+                  style={{ height: "30px", width: "30px" }}
                   alt=""
                   loading="lazy"
                 />
