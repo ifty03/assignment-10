@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import "./App.css";
 import AboutMe from "./Pages/AboutMe/AboutMe";
 import Blog from "./Pages/Blog/Blog";
@@ -13,12 +13,14 @@ import Header from "./Pages/Shared/Header/Header";
 import SignUp from "./Pages/SignUp/SignUp";
 export const ServiceContext = createContext([]);
 function App() {
+  // const { checkOutId } = useParams();
   const [services, setServices] = useState([]);
   useEffect(() => {
     fetch("service.json")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
+  // console.log(checkOutId, services);
 
   return (
     <div className="App bg-slate-100">

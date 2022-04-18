@@ -15,8 +15,8 @@ const CheckOut = () => {
 
     setCurrent(selectedService);
   }, [checkOutId]);
-  const { name, balance, picture, about } = current;
-  console.log(services);
+  // const { name, balance, picture, about } = current;
+
   return (
     <div>
       <section className="bg-gray-100  lg:py-12 lg:flex lg:justify-center">
@@ -25,16 +25,18 @@ const CheckOut = () => {
             <div
               className="h-64 bg-cover lg:rounded-lg lg:h-full"
               style={{
-                backgroundImage: `url(${picture})`,
+                backgroundImage: `url(${current?.picture})`,
               }}
             ></div>
           </div>
 
           <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-slate-900 md:text-3xl">
-              {name}{" "}
+              {current?.name}{" "}
             </h2>
-            <p className="mt-4 text-gray-600 text-slate-900-400">{about}</p>
+            <p className="mt-4 text-gray-600 text-slate-900-400">
+              {current?.about}
+            </p>
 
             <div className="mt-8">
               <Link
@@ -71,9 +73,9 @@ const CheckOut = () => {
               fill="currentColor"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               />
             </svg>
 
@@ -158,7 +160,7 @@ const CheckOut = () => {
                 e.preventDefault();
               }}
               type="submit"
-              class=" cursor-pointer inline-block px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out"
+              className=" cursor-pointer inline-block px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out"
               data-bs-toggle="modal"
               data-bs-target="#exampleModalSm"
               value="Check out"
@@ -168,21 +170,21 @@ const CheckOut = () => {
       </section>
       {/*  modal section */}
       <div
-        class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+        className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
         id="exampleModalSm"
         tabindex="-1"
         aria-labelledby="exampleModalSmLabel"
         aria-modal="true"
         role="dialog"
       >
-        <div class="modal-dialog modal-sm relative w-auto pointer-events-none">
-          <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-            <div class=" modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+        <div className="modal-dialog modal-sm relative w-auto pointer-events-none">
+          <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+            <div className=" modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <div>
                 <GoVerified className="text-4xl text-green-500 mx-auto my-4"></GoVerified>
 
                 <h5
-                  class="text-2xl flex mx-auto justify-center items-center  font-medium leading-normal text-green-600"
+                  className="text-2xl flex mx-auto justify-center items-center  font-medium leading-normal text-green-600"
                   id="exampleModalSmLabel"
                 >
                   Congratulations !! <ImHappy2 />
@@ -194,7 +196,7 @@ const CheckOut = () => {
             </div>
             <div
               data-bs-dismiss="modal"
-              class="modal-body  relative cursor-pointer p-4 bg-green-600 text-xl font-semibold text-white"
+              className="modal-body  relative cursor-pointer p-4 bg-green-600 text-xl font-semibold text-white"
             >
               Ok
             </div>

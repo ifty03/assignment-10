@@ -5,7 +5,7 @@ const AboutMe = () => {
   return (
     <div>
       <div className="md:w-4/6 rounded-2xl mt-8 mx-auto p-6 sm:p-12 dark:dark:bg-slate-900 dark:dark:text-white">
-        <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
+        <div className="flex flex-col space-y-4 lg:space-y-0 lg:space-x-6 lg:flex-row">
           <img
             src={user}
             alt=""

@@ -14,6 +14,7 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+  const [currentUser] = useAuthState(auth);
 
   const handelLogin = async (e) => {
     const email = e.target.email.value;
@@ -28,6 +29,7 @@ const Login = () => {
     if (user) {
       toast.success("Login Successfull");
     }
+
     console.log(user);
     if (error) {
       toast.error("invalid password or email !");
@@ -40,7 +42,7 @@ const Login = () => {
   };
   let navigate = useNavigate();
   let location = useLocation();
-  const [currentUser] = useAuthState(auth);
+
   let from = location.state?.from?.pathname || "/";
   if (currentUser) {
     navigate(from, { replace: true });
@@ -167,7 +169,7 @@ const Login = () => {
               Create new account
             </Link>
           </p>
-          <Toaster />
+
           <div className="flex items-center w-4/6 mx-auto">
             <div
               style={{ height: "1px", width: "100%" }}
@@ -179,6 +181,7 @@ const Login = () => {
               className="bg-gray-700"
             ></div>
           </div>
+          <Toaster />
         </form>
         <Social></Social>
       </div>
