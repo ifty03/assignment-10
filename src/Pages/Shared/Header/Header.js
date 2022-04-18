@@ -162,13 +162,9 @@ const Header = () => {
               </Link>
             )}
             <div className="dropdown relative">
-              <a
+              <Link
                 className="dropdown-toggle flex items-center hidden-arrow"
-                href="/"
-                id="dropdownMenuButton2"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                to="/profile"
               >
                 <img
                   src={userPhoto}
@@ -177,7 +173,7 @@ const Header = () => {
                   alt=""
                   loading="lazy"
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -8,6 +8,7 @@ import CheckOut from "./Pages/CheckOut/CheckOut";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import NotFound from "./Pages/NotFound/NotFound";
+import Profile from "./Pages/Profile/Profile";
 import RequireAuth from "./Pages/RequireAuth";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
@@ -32,6 +33,7 @@ function App() {
           <Route path="/home" element={<Home></Home>}></Route>
           <Route path="/about" element={<AboutMe></AboutMe>}></Route>
           <Route path="/blogs" element={<Blog></Blog>}></Route>
+          <Route path="/profile" element={<Profile></Profile>}></Route>
           <Route
             path="/checkOut/:checkOutId"
             element={
