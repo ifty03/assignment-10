@@ -6,9 +6,9 @@ const Banner = () => {
   return (
     <div className="banner-container bg-cover grid grid-cols-3 md:grid-cols-2 md:pt-10 pb-10 md:pb-40">
       <div className="md:pt-28 pt-10 col-span-2  lg:col-span-1">
-        <h1 className=" text-rose-600 text-xl md:text-7xl font-bold">
-          Try a Week with me{" "}
-        </h1>
+        <h2 className=" text-rose-600 text-xl md:text-7xl font-bold title">
+          Try a Week with me
+        </h2>
         <h2 className=" text-white mb-5 text-xl lg:mb-20 md:mb-10 md:text-7xl text-white  font-bold title">
           and change your life style
         </h2>
