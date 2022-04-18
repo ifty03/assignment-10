@@ -7,12 +7,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import { signOut } from "firebase/auth";
 import userPhoto from "../../../images/user.jpg";
+import toast from "react-hot-toast";
 
 const Header = () => {
   const [user] = useAuthState(auth);
 
   const handelSignOut = () => {
     signOut(auth);
+    toast.success("Sign out successful");
   };
 
   return (
