@@ -19,7 +19,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
-  console.log(services);
+
   return (
     <div className="App bg-slate-100">
       <Header></Header>
