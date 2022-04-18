@@ -4,6 +4,7 @@ import auth from "../../firebase.init";
 import toast, { Toaster } from "react-hot-toast";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import logo from "../../images/logo.png";
+import Social from "../../Social/Social";
 
 const SignUp = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -189,7 +190,19 @@ const SignUp = () => {
             </Link>
           </p>
           <Toaster />
+          <div className="flex items-center w-4/6 mx-auto">
+            <div
+              style={{ height: "1px", width: "100%" }}
+              className="bg-gray-700"
+            ></div>
+            <p className="mx-3">or</p>
+            <div
+              style={{ height: "1px", width: "100%" }}
+              className="bg-gray-700"
+            ></div>
+          </div>
         </form>
+        <Social></Social>
       </div>
     </div>
   );
