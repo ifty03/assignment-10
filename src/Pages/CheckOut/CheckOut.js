@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ImHappy2 } from "react-icons/im";
 import { GoVerified } from "react-icons/go";
-import { ServiceContext } from "../../App";
 
 const CheckOut = () => {
   const [services, setServices] = useState([]);
@@ -13,7 +12,6 @@ const CheckOut = () => {
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
-  console.log(services);
 
   const [current, setCurrent] = useState([]);
   const { checkOutId } = useParams();
@@ -66,7 +64,7 @@ const CheckOut = () => {
         className="w-full max-w-2xl px-6 py-4 mx-auto bg-white rounded-md shadow-md dark:bg-white mt-8"
       >
         <h2 className="text-3xl font-semibold text-center text-white dark:text-black">
-          Get in touch
+          Check out from
         </h2>
         <p className="mt-3 text-center text-gray-800 dark:text-gray-400">
           fill this from. for presage my service
@@ -174,7 +172,7 @@ const CheckOut = () => {
               className=" cursor-pointer inline-block px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out"
               data-bs-toggle="modal"
               data-bs-target="#exampleModalSm"
-              value="Check out"
+              value="Send request"
             />
           </div>
         </form>
@@ -183,7 +181,7 @@ const CheckOut = () => {
       <div
         className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
         id="exampleModalSm"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalSmLabel"
         aria-modal="true"
         role="dialog"

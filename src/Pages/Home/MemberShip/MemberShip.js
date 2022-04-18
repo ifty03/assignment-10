@@ -270,7 +270,7 @@ const MemberShip = () => {
         <div
           className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
           id="exampleModalSm"
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="exampleModalSmLabel"
           aria-modal="true"
           role="dialog"
