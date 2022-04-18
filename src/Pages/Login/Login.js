@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import logo from "../../images/logo.png";
@@ -9,13 +9,16 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Social from "../../Social/Social";
+import Loading from "../Shared/Loading/Loading";
 
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
   const [currentUser] = useAuthState(auth);
-
+  // if (loading) {
+  //   return <Loading></Loading>;
+  // }
   const handelLogin = async (e) => {
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -25,7 +28,8 @@ const Login = () => {
     /* clear input feild */
     e.target.email.value = "";
     e.target.password.value = "";
-
+  };
+  useEffect(() => {
     if (user) {
       toast.success("Login Successfull");
     }
@@ -34,19 +38,23 @@ const Login = () => {
     if (error) {
       toast.error("invalid password or email !");
     }
-  };
+  }, [user, error]);
+
   /* reset password */
   const [currentEmail, setCurrentEmail] = useState("");
   const handelEmailBlur = (e) => {
     setCurrentEmail(e.target.value);
   };
+
+  /* exist user checking */
   let navigate = useNavigate();
   let location = useLocation();
-
   let from = location.state?.from?.pathname || "/";
-  if (currentUser) {
-    navigate(from, { replace: true });
-  }
+  useEffect(() => {
+    if (currentUser) {
+      navigate(from, { replace: true });
+    }
+  });
   return (
     <div>
       <div className="block p-6 mx-auto my-8 rounded-lg shadow-lg bg-white max-w-sm">
@@ -121,6 +129,7 @@ const Login = () => {
               placeholder="Password"
             />
           </div>
+
           <div className="flex justify-end items-center mb-6">
             <span
               onClick={() => {
@@ -181,7 +190,6 @@ const Login = () => {
               className="bg-gray-700"
             ></div>
           </div>
-          <Toaster />
         </form>
         <Social></Social>
       </div>

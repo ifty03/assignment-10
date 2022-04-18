@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import logo from "../../images/logo.png";
 import Social from "../../Social/Social";
+import Loading from "../Shared/Loading/Loading";
 
 const SignUp = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [customError, setCustomError] = useState("");
+  if (loading) {
+    return <Loading></Loading>;
+  }
+  /* toast setup */
+  if (user) {
+    toast.success("user Successfully created!");
+  }
+
   const handelSignUp = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -22,7 +31,7 @@ const SignUp = () => {
       if (password === confirmPassword) {
         createUserWithEmailAndPassword(email, password);
         setCustomError("");
-        toast.success("user Successfully created!");
+
         /* clear input feild */
         e.target.email.value = "";
         e.target.password.value = "";
@@ -189,7 +198,7 @@ const SignUp = () => {
               Login
             </Link>
           </p>
-          <Toaster />
+
           <div className="flex items-center w-4/6 mx-auto">
             <div
               style={{ height: "1px", width: "100%" }}

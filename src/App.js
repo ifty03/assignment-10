@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 import { Route, Routes, useParams } from "react-router-dom";
 import "./App.css";
 import AboutMe from "./Pages/AboutMe/AboutMe";
@@ -20,10 +21,11 @@ function App() {
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
-  // console.log(checkOutId, services);
+  console.log(services);
 
   return (
     <div className="App bg-slate-100">
+      <Toaster />
       <Header></Header>
       <ServiceContext.Provider value={services}>
         <Routes>

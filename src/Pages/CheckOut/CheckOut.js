@@ -5,16 +5,27 @@ import { GoVerified } from "react-icons/go";
 import { ServiceContext } from "../../App";
 
 const CheckOut = () => {
-  const services = useContext(ServiceContext);
+  const [services, setServices] = useState([]);
+  useEffect(() => {
+    fetch(
+      "https://raw.githubusercontent.com/ifty03/service-data/main/service.json"
+    )
+      .then((res) => res.json())
+      .then((data) => setServices(data));
+  }, []);
+  console.log(services);
+
   const [current, setCurrent] = useState([]);
   const { checkOutId } = useParams();
-  useEffect(() => {
-    const selectedService = services.find(
-      (service) => service._id === checkOutId
-    );
 
+  const selectedService = services.find(
+    (service) => service._id === checkOutId
+  );
+
+  useEffect(() => {
     setCurrent(selectedService);
-  }, [checkOutId]);
+  });
+
   // const { name, balance, picture, about } = current;
 
   return (
