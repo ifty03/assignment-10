@@ -38,7 +38,8 @@ const Blog = () => {
           />
           <div className="p-6 flex flex-col justify-start">
             <h5 className="text-gray-900 font-semibold text-xl border-b border-b-slate-500 mb-2">
-              Q1. Difference between authorization and authentication ?
+              Q2. Why are you using firebase? What other options do you have to
+              implement authentication?
             </h5>
             <p className="text-gray-700 text-base mb-4 text-left">
               That's why I use Firebase, Firebase Authentication provides
@@ -66,7 +67,8 @@ const Blog = () => {
           />
           <div className="p-6 flex flex-col justify-start">
             <h5 className="text-gray-900 font-semibold text-xl border-b border-b-slate-500 mb-2">
-              Q1. Difference between authorization and authentication ?
+              Q3. What other services does firebase provide other than
+              authentication?
             </h5>
             <p className="text-gray-700 text-base mb-4 text-left">
               Firebase is a full package that can help in developing your mobile

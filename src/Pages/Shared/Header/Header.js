@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 
 const Header = () => {
   const [user] = useAuthState(auth);
+  console.log(user);
 
   const handelSignOut = () => {
     signOut(auth);
