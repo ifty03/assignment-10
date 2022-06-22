@@ -13,9 +13,13 @@ const Service = ({ service }) => {
         />
         <div className="flex flex-col justify-between p-6 space-y-8">
           <div className="space-y-2">
-            <h2 className="text-3xl font-semibold tracking-wide">{name}</h2>
-            <p className="dark:text-coolGray-100">{about.slice(0, 200)}</p>
-            <p className="text-xl font-semibold">$ {balance}</p>
+            <h2 className="text-3xl text-left font-semibold tracking-wide">
+              {name.slice(0, 15)}
+            </h2>
+            <p className="dark:text-coolGray-100 text-left">
+              {about.slice(0, 100)}
+            </p>
+            <p className="text-xl font-semibold text-left">$ {balance}</p>
           </div>
           <Link
             to={"/checkOut/" + _id}
